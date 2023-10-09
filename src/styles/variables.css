@@ -1,0 +1,11 @@
+:root {
+  --font-family:  Helvetica;
+  --black-color: #000000;
+  --text-hover-color: #5494f0;
+  --focus-color: #92b0da;
+  --background-color: #f9f8f8;
+  --shadw:#333232;
+  --theme-color:#0074CC;
+  --theme-color-400:#04508b;
+  --white-color: #fff;
+}
