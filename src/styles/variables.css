@@ -1,5 +1,6 @@
 :root {
-  --font-family:  Helvetica;
+  --font-family: Helvetica, system-ui, Avenir, Arial, sans-serif;
+  --font-color:#fff;
   --black-color: #000000;
   --text-hover-color: #5494f0;
   --focus-color: #92b0da;
@@ -8,4 +9,7 @@
   --theme-color:#0074CC;
   --theme-color-400:#04508b;
   --white-color: #fff;
+  --board-background:#d7d7d7;
+  --danger:#e52020;
+  --sucess:#7ce520;
 }

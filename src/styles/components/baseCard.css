@@ -1,0 +1,40 @@
+.baseCard__shadow{
+    background-color: var(--shadw);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.8;
+}
+.container__box{
+    width: 80%;
+}
+
+.container__box > .container__box-row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    border-bottom: gray 1px solid;
+}
+.container__box-row > h4{
+    white-space: pre;
+}
+
+.delete__btn{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.delete__btn--1{
+    background-color: var(--danger);
+}
+
+.delete__btn--0{
+    background-color: var(--sucess);
+}
