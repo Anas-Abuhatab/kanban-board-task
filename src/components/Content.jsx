@@ -21,18 +21,17 @@ export default function Content() {
   // created event
   useEffect(() => {
     setDroppables(content.current.querySelectorAll(".board-section"));
-    // if (!localStorage.getItem("userData")) {
-    //   setUserData(JSON.parse(localStorage.getItem("userData")));
-    // }
   }, []);
 
+  //watcher
   useEffect(() => {
       localStorage.setItem("userData", JSON.stringify(userData));
-    
   }, [userData]);
 
+  //watcher
   useEffect(() => {
     if (draggables && droppables) {
+      let onhandCard;
       draggables.forEach((card) => {
         card.addEventListener("dragstart", () => {
           card.classList.add("at-dragging");
@@ -46,25 +45,15 @@ export default function Content() {
         targetColumn.addEventListener("dragover", (event) => {
           event.preventDefault();
 
-          const buttomCard = findButtomCard(targetColumn, event.clientY);
-          const onhandCard = document.querySelector(".at-dragging");
-          if (!buttomCard) {
-            targetColumn.appendChild(onhandCard);
-          } else {
-            targetColumn.insertBefore(
-              onhandCard,
-              document.querySelector("#To-Do") === targetColumn
-                ? buttomCard.nextSibling
-                : buttomCard
-            );
-          }
+          onhandCard = document.querySelector(".at-dragging");
+
         });
 
         targetColumn.addEventListener("drop", (event) => {
           event.preventDefault();
-          const onhandCard = document.querySelector(".at-dragging");
-          let taskId = onhandCard.getAttribute("id");
-          setUserData((prevLocalData) => {
+          let taskId = onhandCard?.getAttribute("id");
+
+          taskId && setUserData((prevLocalData) => {
             const index = prevLocalData.findIndex((object) => {
               return object.id == taskId;
             });
@@ -74,25 +63,6 @@ export default function Content() {
         });
       });
 
-      const findButtomCard = (targetColumn, mouseYPosition) => {
-        const cards = targetColumn.querySelectorAll(
-          ".board__card:not(.at-dragging)"
-        );
-
-        let closestCard = null;
-        let closestOffset = Number.NEGATIVE_INFINITY;
-
-        cards.forEach((card) => {
-          const { top } = card.getBoundingClientRect();
-
-          const offset = mouseYPosition - top;
-          if (offset < 0 && offset > closestOffset) {
-            closestOffset = offset;
-            closestCard = card;
-          }
-        });
-        return closestCard;
-      };
     }
   }, [draggables, droppables]);
 
@@ -100,12 +70,16 @@ export default function Content() {
     // console.log(event.target.value);
     // console.log(draggables);
   };
+  let handelCreatebtn = () => {
+    setBaseCardMode('Create');
+    setShowBaseCard(true);
+  };
 
   return (
     <div ref={content} className="content">
       <div className="content__head">
         <h2 className="content__head-title">Kanban Board</h2>
-        <button className="content__head-btn">Add New +</button>
+        <button className="content__head-btn" onClick={handelCreatebtn}>Add New +</button>
       </div>
       <form>
         <input onChange={(e) => handelChange(e)} type="date"></input>
@@ -114,9 +88,9 @@ export default function Content() {
         <div className="board">
           <div className="board-section" id="To-Do">
             <h3 className="board-section__title">To Do</h3>
-            {userData?.map((task) => {
+            {userData?.filter(i => i.status === 'To-Do').map((task) => {
               return (
-                <div draggable="true" key={task.id}>
+                <div key={task.id}>
                   <BoardCard
                     setBaseCardData={setBaseCardData}
                     setBaseCardMode={setBaseCardMode}
@@ -132,11 +106,37 @@ export default function Content() {
         <div className="board">
           <div className="board-section" id="In-Progress">
             <h3 className="board-section__title">In Progress</h3>
+            {userData?.filter(i => i.status === 'In-Progress').map((task) => {
+              return (
+                <div key={task.id}>
+                  <BoardCard
+                    setBaseCardData={setBaseCardData}
+                    setBaseCardMode={setBaseCardMode}
+                    passShowBaseCard={setShowBaseCard}
+                    draggables={setDraggables}
+                    task={{ ...task }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="board">
           <div className="board-section" id="In-Testing">
             <h3 className="board-section__title">In Testing</h3>
+            {userData?.filter(i => i.status === 'In-Testing').map((task) => {
+              return (
+                <div key={task.id}>
+                  <BoardCard
+                    setBaseCardData={setBaseCardData}
+                    setBaseCardMode={setBaseCardMode}
+                    passShowBaseCard={setShowBaseCard}
+                    draggables={setDraggables}
+                    task={{ ...task }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="board">
@@ -147,6 +147,19 @@ export default function Content() {
             >
               Done
             </h3>
+            {userData?.filter(i => i.status === 'Done').map((task) => {
+              return (
+                <div key={task.id}>
+                  <BoardCard
+                    setBaseCardData={setBaseCardData}
+                    setBaseCardMode={setBaseCardMode}
+                    passShowBaseCard={setShowBaseCard}
+                    draggables={setDraggables}
+                    task={{ ...task }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -154,7 +167,7 @@ export default function Content() {
         <BaseCard
           mode={baseCardMode}
           setUserData={setUserData}
-          data={baseCardData}
+          task={baseCardData}
           passShowBaseCard={setShowBaseCard}
         />
       )}
