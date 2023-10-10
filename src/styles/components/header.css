@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2vw;
+    align-items: center;
+    height: 100%;
+    box-shadow: 0 4px 2px -2px #000;
+}
+
+.header__title, .header__setting{
+  font-weight: 700;
+  user-select: none;
+  -webkit-user-select: none; /*Safari*/
+  -moz-user-select: none; /*Firefox*/
+}
+
+.header__setting{
+  cursor: pointer;
+}
+
+.header__setting:hover{
+  color:var(--text-hover-color);
+  animation: logo-spin infinite 10s linear;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
