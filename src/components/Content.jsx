@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/components/content.css";
 import BoardCard from "./BoardCard";
-import data from "/data.js";
+import data from "../data.js";
 import BaseCard from "./BaseCard";
 
 export default function Content() {
@@ -62,7 +62,6 @@ export default function Content() {
           event.preventDefault();
 
           onhandCard = document.querySelector(".at-dragging");
-
         });
 
         targetColumn.addEventListener("drop", (event) => {
@@ -82,7 +81,6 @@ export default function Content() {
     }
   }, [draggables, droppables]);
 
-
   const handelCreatebtn = () => {
     setBaseCardMode("Create");
     setShowBaseCard(true);
@@ -96,18 +94,17 @@ export default function Content() {
   };
 
   const dataHandler = (column) => {
-    if (userData) {      
+    if (userData) {
       let data = [...userData]?.filter((i) => i.status === column);
       if (formData.dueDate) {
-        data = data.filter((i) => i.dueDate === formData.dueDate )
+        data = data.filter((i) => i.dueDate === formData.dueDate);
       }
       if (formData.priority) {
         data.sort((a, b) => {
-          
-          if (a.priority === formData.priority) return -1
-          if (b.priority === formData.priority) return 1
-          return 0
-        })
+          if (a.priority === formData.priority) return -1;
+          if (b.priority === formData.priority) return 1;
+          return 0;
+        });
       }
       return data;
     }
