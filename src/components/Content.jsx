@@ -70,13 +70,13 @@ export default function Content() {
       },
     ],
   };
-  if (!localStorage.getItem("userData")) {
-    localStorage.setItem("userData", JSON.stringify([...data.data]));
-  }
-
+  
   // created event
   useEffect(() => {
     setDroppables(content.current.querySelectorAll(".board-section"));
+    if (!localStorage.getItem("userData")) {
+      localStorage.setItem("userData", JSON.stringify([...data.data]));
+    }
   }, []);
 
   //watcher
