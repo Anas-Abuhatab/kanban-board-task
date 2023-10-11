@@ -5,6 +5,7 @@ body {
   color: var(--black-color);
   font-family: var(--font-family);
   position: relative;
+  transition: all 0.2s;
 }
 
 button {
@@ -22,3 +23,4 @@ button {
 button:hover {
   border-color: #646cff;
 }
+

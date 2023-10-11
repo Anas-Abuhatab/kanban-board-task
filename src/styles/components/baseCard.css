@@ -38,8 +38,8 @@
 }
 
 .container__header--close {
-  width: 3vw;
-  height: 3vw;
+  width: 30px;
+  height: 30px;
   padding: 0 3vw;
   cursor: pointer;
 }
@@ -51,6 +51,7 @@
 .container__header--title {
   padding: 0 3vw;
   font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .container__box {
@@ -72,7 +73,7 @@
 .container__box > .container__box-row {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding: 1rem;
   width: 100%;
   border-bottom: gray 1px solid;
@@ -107,7 +108,9 @@
 }
 
 .container__box-row {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
   margin: 1rem;
   margin-top: 0;
 }
@@ -121,7 +124,7 @@
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  width: 100%;
+  width: 90%;
   margin: 8px 0;
   border: 1px solid #ccc;
   box-shadow: inset 0 1px 3px #ddd;

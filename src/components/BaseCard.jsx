@@ -63,12 +63,13 @@ export default function BaseCard(props) {
       <div className="baseCard">
         <div
           className="container"
-          style={props.mode === "Delete" ? { width: "400px" } : {}}
+          style={props.mode === "Delete" ? { width: "400px", maxWidth: '90%'} : {}}
         >
           <div className="container__header">
             <h2 className="container__header--title">
               {props.mode === "Create" && "Create New Task"}
               {props.mode === "View" && `${props.task.title} Details`}
+              {props.mode === "Edit" && `Edit ${props.task.title}`}
               {props.mode === "Delete" && `Delete ${props.task.title}`}
             </h2>
             <svg

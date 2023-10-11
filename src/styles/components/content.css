@@ -22,8 +22,6 @@
 }
 
 .content__head-btn {
-  cursor: pointer;
-  padding: 0.8vw 1.6vw;
   max-width: 150px;
   min-width: fit-content;
   width: 8vw;
@@ -37,31 +35,46 @@
   transition: all 0.1s;
 }
 
-.content__head-btn:hover {
+.content__head-btn:hover, .content__form-btn:hover {
   background-color: var(--theme-color-400);
 }
 
-.content__head-btn:active {
+.content__head-btn:active, .content__form-btn:active {
   transform: scale(0.95);
+}
+.content__form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.content__form-btn {
+  background-color: var(--theme-color);
+  align-self: baseline;
+  transition: all 0.1s;
 }
 
 .content__boards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 500px;
   margin-top: 4rem;
-  gap: 4vw;
+  gap: 3vw;
 }
 
 .board {
+  /* touch-action: none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-grow: 0.75;
   background-color: var(--board-background);
   width: 20%;
+  min-width: 325px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   overflow: hidden;
@@ -112,8 +125,12 @@
 }
 
 .board__card-head--actions >svg{
-  padding: 8px;
+  padding: 8px 0;
   cursor: pointer;
+}
+
+.board__card-head--actions >svg:hover{
+scale: 1.2;
 }
 
 
@@ -153,7 +170,7 @@
 
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .content__head {
     justify-content: center;
     flex-direction: column;
@@ -161,5 +178,9 @@
 
   .board {
     width: 80%;
+  }
+
+  .content__form{
+    flex-direction: column;
   }
 }
