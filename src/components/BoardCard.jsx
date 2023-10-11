@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
 export default function BoardCard(props) {
-//   console.log("props", props);
-
   useEffect(() => {
     props.draggables([...document.querySelectorAll(".board__card")]);
   }, []);
@@ -12,6 +10,7 @@ export default function BoardCard(props) {
       style={{ marginBottom: "1rem" }}
       className="board__card"
       id={props.task.id}
+      name={props.task.status+props.task.id}
     >
       <div className="board__card-head">
         <h5>{props.task.dueDate}</h5>
@@ -44,6 +43,11 @@ export default function BoardCard(props) {
           </svg>
 
           <svg //edit
+          onClick={() => {
+              props.passShowBaseCard(true);
+              props.setBaseCardData(props.task);
+              props.setBaseCardMode("Edit");
+            }}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

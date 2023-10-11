@@ -14,6 +14,13 @@
   -moz-user-select: none; /*Firefox*/
 }
 
+.header__style-btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
+
 .header__setting{
   cursor: pointer;
 }

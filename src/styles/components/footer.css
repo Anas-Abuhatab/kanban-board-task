@@ -1,0 +1,10 @@
+.footer{
+    width: 100%;
+}
+
+.footer__text{
+    width: fit-content;
+    padding: 8vw;
+    margin: auto;
+    font-weight: bold;
+}
